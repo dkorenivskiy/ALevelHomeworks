@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +33,7 @@ namespace Store
             } while (removeQuantity > quantity);
         }
 
-            public (string[], int[]) Program()
+        public (string[], int[]) Program()
         {
             if (string.IsNullOrWhiteSpace(items[0]))
             {
@@ -46,18 +46,29 @@ namespace Store
             Console.WriteLine("Enter the name of item, which quantity you want to change.");
             string changeItem = Console.ReadLine();
 
+            bool find = false;
+            int index = 0;
             for (int i = 0; i < items.Length; i++)
             {
                 if (items[i] == changeItem)
                 {
-                    RemoveQuantity(ref quantity[i]);
+                    find = true;
+                    index = i;
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("There is no such an item.");
-                    break;
+                    find = false;
                 }
+            }
+
+            if (find == true)
+            {
+                RemoveQuantity(ref quantity[index]);
+            }
+            else
+            {
+                Console.WriteLine("There is no such an item.");
             }
 
             var result = (items, quantity);
